@@ -388,7 +388,7 @@ def _simplifyExpressions(expr):
     opfuncs = {'<': operator.lt, '<=': operator.le, '>': operator.gt, '>=': operator.ge}
 
     simplify = _simplifyExpressions
-    expr.params = map(simplify, expr.params)
+    expr.params = list(map(simplify, expr.params))
 
     if isinstance(expr, ast.BinaryInfix):
         left, right = expr.params
@@ -686,7 +686,7 @@ def _createDeclarations(root, predeclared):
     # print remaining
     assert not remaining
     assert None not in localdefs
-    for scope, ldefs in localdefs.items():
+    for scope, ldefs in list(localdefs.items()):
         scope.statements = ldefs + scope.statements
 
 def _createTernaries(scope, item):

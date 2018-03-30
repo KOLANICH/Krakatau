@@ -17,8 +17,7 @@ import zipfile
 
 from Krakatau import script_util
 from Krakatau.assembler.tokenize import AsssemblerError
-if sys.version_info < (3, 0):
-    import decompile
+import decompile
 import disassemble
 import assemble
 import tests
@@ -273,12 +272,12 @@ if __name__ == '__main__':
 
     if do_decompile:
         for target, testcases in filter(target_filter, sorted(tests.decompiler.registry.items())):
-            testlist.append(('decompiler', target, map(tuple, testcases)))
+            testlist.append(('decompiler', target, list(map(tuple, testcases))))
     if do_disassemble:
         for target, testcases in filter(target_filter, sorted(tests.disassembler.registry.items())):
-            testlist.append(('disassembler', False, dis_class_location, target, map(tuple, testcases)))
+            testlist.append(('disassembler', False, dis_class_location, target, list(map(tuple, testcases))))
         for target, testcases in filter(target_filter, sorted(tests.decompiler.registry.items())):
-            testlist.append(('disassembler', False, dec_class_location, target, map(tuple, testcases)))
+            testlist.append(('disassembler', False, dec_class_location, target, list(map(tuple, testcases))))
 
         for fname in os.listdir(dis2_class_location):
             target = fname.rpartition('.')[0]

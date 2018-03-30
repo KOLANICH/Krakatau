@@ -1,4 +1,5 @@
 import collections
+from itertools import chain
 
 from .. import graph_util
 from ..ssa import objtypes
